@@ -15,7 +15,17 @@
                 <a :href="link"><img v-bind:src="image" :alt="altText"></a>
             </div>
             <div class="product-info">
-                <h1>{{ product }}-{{ description }}</h1>
+                <h1>{{ product }}</h1>
+                <p v-if="inventory > 10" >In Stock</p>
+                <p v-else-if="inventory <= 10 && inventory > 0">Almost out of stock</p>
+                <p v-else>Sold out</p>
+                <span v-if="onSale">On Sale!</span>
+                <ul>
+                    <li v-for="detail in details">{{ detail }}</li>
+                </ul>
+                <div v-for="variant in variants" :key="variant.variantId">
+                    <p>{{ variant.variantColor }}</p>
+                </div>
             </div>
         </div>
 
